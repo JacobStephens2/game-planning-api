@@ -1,5 +1,5 @@
 <?php
 
-echo 'index.php file';
+echo '/api/index.php file';
 
 // Silence
