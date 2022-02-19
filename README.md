@@ -4,16 +4,16 @@ This is the back end of the Game Planning App.
 
 ## Endpoints
 
-base URL: http://ec2-184-73-147-183.compute-1.amazonaws.com/
+base URL: http://api.gameplanning.site/
 
 ### index.php
 
-http://ec2-184-73-147-183.compute-1.amazonaws.com/index.php
+http://api.gameplanning.site/index.php
 
 This endpoint returns JSON data and can be used as a test for connection to the API.
 
 ### database-test.php
 
-http://ec2-184-73-147-183.compute-1.amazonaws.com/database-test.php
+http://api.gameplanning.site/database-test.php
 
 This endpoint returns JSON data from the backend's MySQL database and can be used as a test for database data from the API.
