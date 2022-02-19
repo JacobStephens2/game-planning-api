@@ -6,11 +6,7 @@ This is the back end of the Game Planning App, providing data which can be used 
 
 base URL: https://api.gameplanning.site/
 
-### index.php
-
-https://api.gameplanning.site/index.php
-
-This endpoint returns JSON data and can be used as a test for connection to the API.
+The base URL returns JSON data and can be used as a test endpoint for connection to the API.
 
 ### database-test.php
 
