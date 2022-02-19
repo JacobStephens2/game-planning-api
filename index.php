@@ -10,7 +10,7 @@ $myObj = new testObject;
 
 $myObj->name = "Data from the index.php endpoint of the Game Planning App API";
 $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
-$myObj->endPointBaseURL = "http://ec2-184-73-147-183.compute-1.amazonaws.com/back-end/api/";
+$myObj->endPointBaseURL = "https://api.gameplanning.site/";
 $myObj->endPointsList = array("index.php", "database-test.php");
 
 $myJSON = json_encode($myObj);
