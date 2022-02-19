@@ -8,7 +8,7 @@ class testObject {}
 
 $myObj = new testObject;
 
-$myObj->name = "Data from the index.php endpoint of the Game Planning App API";
+$myObj->value = "Data from the index.php endpoint of the Game Planning App API";
 $myObj->frontEnd = "https://gameplanning.site/";
 $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
 $myObj->endPointBaseURL = "https://api.gameplanning.site/";
