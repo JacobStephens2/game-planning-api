@@ -1,5 +1,7 @@
 <?php
 
+include 'database/initialize.php';
+
 class testObject {}
 
 $myObj = new testObject;
