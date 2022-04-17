@@ -1,5 +1,5 @@
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "gameplanning.site"
+    Header set Access-Control-Allow-Origin "https://gameplanning.site"
     Header set Access-Control-Allow-Methods "GET"
     Header set Content-Type "application/json; charset=UTF-8"
 </IfModule>
