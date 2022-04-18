@@ -20,7 +20,7 @@ function get_game() {
   $row = $result->fetch_assoc();
   $result->free();
 
-  return $row['title'];
+  return $row['Title'];
 }
 
 ?>
