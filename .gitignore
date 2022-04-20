@@ -1,3 +1,5 @@
 .vscode/sftp.json
 *db_credentials.php
 .htaccess
+staff
+shared
