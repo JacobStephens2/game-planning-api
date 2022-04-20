@@ -1,50 +1,82 @@
 <?php
 
 class User {
-
-  // ----- START OF ACTIVE RECORD CODE -----
-  // static protected $database;
   
-  // static public function set_database($database) {
-  //   self::$database = $database;
-  // }
+  // ----- START OF ACTIVE RECORD CODE -----
+  static protected $database;
 
-  // static public function create_user() {
+  static public function set_database($database) {
+    self::$database = $database;
+  }
 
-  //   // INSERT INTO users (email, password)
-  //   // VALUES ('$data->email', '$data->email')
+    static public function find_by_sql($sql) {
+    $result = self::$database->query($sql);
+    if(!$result) {
+      exit("Database query failed.");
+    }
 
-  //   global $db;
+    // results into objects
+    $object_array = [];
+    while($record = $result->fetch_assoc()) {
+      $object_array[] = self::instantiate($record);
+    }
 
-  //   // Add user validation
+    $result->free();
 
-  //   $hashed_password = password_hash($user['password'], PASSWORD_BCRYPT);
+    return $object_array;
+  }
 
-  //   $sql = "INSERT INTO users ";
-  //   $sql .= "(first_name, last_name, email, username, hashed_password, user_group) ";
-  //   $sql .= "VALUES (";
-  //   $sql .= "'" . db_escape($db, $user['first_name']) . "',";
-  //   $sql .= "'" . db_escape($db, $user['last_name']) . "',";
-  //   $sql .= "'" . db_escape($db, $user['email']) . "',";
-  //   $sql .= "'" . db_escape($db, $user['username']) . "',";
-  //   $sql .= "'" . db_escape($db, $hashed_password) . "',";
-  //   $sql .= "'1'";
-  //   $sql .= ")";
-  //   $result = mysqli_query($db, $sql);
-  //   echo '<p>' . $sql . '</p>';
-  //   // For INSERT statements, $result is true/false
-  //   if($result) {
-  //     return true;
-  //   } else {
-  //     // INSERT failed
-  //     echo mysqli_error($db);
-  //     db_disconnect($db);
-  //     exit;
-  //   }
+  static public function find_all() {
+    $sql = "SELECT * FROM users";
+    return self::find_by_sql($sql);
+  }
 
-  //   return self::$database->query($sql);
-  // }
+  static public function find_by_id($id) {
+    $sql = "SELECT * FROM users ";
+    $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
+    $obj_array = self::find_by_sql($sql);
+    if(!empty($obj_array)) {
+      return array_shift($obj_array);
+    } else {
+      return false;
+    }
+  }
+
+  static protected function instantiate($record) {
+    $object = new self;
+    // Could manually assign values to properties
+    // but automatically assignment is easier and re-usable
+    foreach($record as $property => $value) {
+      if(property_exists($object, $property)) {
+        $object->$property = $value;
+      }
+    }
+    return $object;
+  }
+
+  public function create() {
+    $sql = "INSERT INTO users (";
+    $sql .= "email, password ";
+    $sql .= ") VALUES (";
+    $sql .= "'" . $this->email . "', ";
+    $sql .= "'" . $this->password . "'";
+    $sql .= ")";
+    $result = self::$database->query($sql);
+    if($result) {
+      $this->id = self::$database->insert_id;
+    }
+    return $result;
+  }
   // ----- END OF ACTIVE RECORD CODE -----
+
+  public $id;
+  public $email;
+  public $password;
+
+  public function __construct($data) {
+    $this->email = $data->email;
+    $this->password = $data->password;
+  }
 
 }
 
