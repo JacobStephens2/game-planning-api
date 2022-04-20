@@ -9,25 +9,13 @@ $data = json_decode($json);
 
 require_once('../private/initialize.php');
 
-// $login_failure_msg = "Log in was unsuccessful.";
+$user = new User($data);
+$result = $user->create();
 
-// $user = find_user_by_email($data->email);
-// if($user) {
-
-//   if(password_verify($password, $user['hashed_password'])) { // original
-//     // password matches
-//     log_in_user($user);
-//     redirect_to(url_for('/index.php'));      
-//   } else {
-//     // username found, but password does not match
-//     $errors[] = $login_failure_msg;
-//   }
-
-// } else {
-//   // no username found
-//   $errors[] = $login_failure_msg;
-// }
-
-echo json_encode($data->email);
+if($result === true) {
+  echo json_encode('User created');
+} else {
+  echo json_encode('Failed to create user (result evaluated false)');
+}
 
 ?>
