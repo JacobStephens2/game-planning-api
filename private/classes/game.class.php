@@ -16,3 +16,5 @@ class Game {
   // ----- END OF ACTIVE RECORD CODE -----
 
 }
+
+?>

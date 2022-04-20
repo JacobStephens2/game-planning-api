@@ -1,6 +1,6 @@
 <?php
 
-include 'database/initialize.php';
+include '../private/initialize.php';
 
 class testObject {}
 
