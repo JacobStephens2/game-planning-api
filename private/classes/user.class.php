@@ -6,8 +6,8 @@ class User extends DatabaseObject {
   static protected $db_columns = ['id', 'email', 'user_group', 'hashed_password'];
 
   public function create($email, $password) {
-    $email_registered = self::find_by_email($email);
-    if ($email_registered) {
+    $email_is_registered = self::find_by_email($email);
+    if ($email_is_registered) {
       return false;
     } else {
       $sql = "INSERT INTO users (";
