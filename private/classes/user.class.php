@@ -29,8 +29,11 @@ class User extends DatabaseObject {
     $this->password = $data->password;
   }
 
-  public function verify_login_credentials() {
-
+  public function verify_login_credentials($email, $password) {
+    $sql = "SELECT * FROM users ";
+    $sql .= "WHERE email = '$email' ";
+    $sql .= "AND password = '$password'";
+    return self::$database->query($sql);
   }
 
 }

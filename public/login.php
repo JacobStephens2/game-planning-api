@@ -13,11 +13,11 @@ if ($data->email == "") {
   echo json_encode('Include an email address to log in');
 } else {
   $user = new User($data);
-  $result = $user->verify_login_credentials($data);
-  if($result === true) {
+  $result = array("value"=>$user->verify_login_credentials($data->email, $data->password));
+  if( $result->num_rows >= 1 ) {
     echo json_encode('Log in successful');
   } else {
-    echo json_encode('Failed to log in (result evaluated false)');
+    echo json_encode(print_r($result));
   }
 }
 
