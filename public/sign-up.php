@@ -13,11 +13,11 @@ if ($data->email == "") {
   echo json_encode('Include an email address to register');
 } else {
   $user = new User($data);
-  $result = $user->create();
-  if($result === true) {
+  $result = $user->create( $data->email, $data->password );
+  if( $result ) {
     echo json_encode('User created');
   } else {
-    echo json_encode('Failed to create user (result evaluated false)');
+    echo json_encode('The email address already is registered to another account');
   }
 }
 
