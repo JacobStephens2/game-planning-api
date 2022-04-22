@@ -10,7 +10,7 @@ $data = json_decode($json);
 require_once('../private/initialize.php');
 
 if ($data->email == "") {
-  echo json_encode('Include an email address to log in');
+  echo json_encode('Submit credentials to log in');
 } else {
   $user = new User();
   $login_result = $user->verify_login_credentials( $data->email, $data->password );
