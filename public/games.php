@@ -17,8 +17,6 @@ use Firebase\JWT\JWT;
 
 // Provide data
 
-echo $_ENV['TEST'];
-
 $data = get_game();
 
 echo json_encode($data);
