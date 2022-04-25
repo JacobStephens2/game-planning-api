@@ -7,7 +7,7 @@ $json = file_get_contents('php://input');
 
 $data = json_decode($json);
 
-require_once('../private/initialize.php');
+require_once('../initialize.php');
 
 $response = new stdClass();
 

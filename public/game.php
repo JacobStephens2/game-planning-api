@@ -1,6 +1,6 @@
 <?php
 
-require_once('../private/initialize.php');
+require_once('../initialize.php');
 
 $data = array("value"=>get_game());
 

@@ -1,6 +1,6 @@
 <?php
 
-include '../private/initialize.php';
+require_once('../initialize.php');
 
 class testObject {}
 
