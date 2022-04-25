@@ -5,6 +5,14 @@ class User extends DatabaseObject {
   static protected $table_name = 'users';
   static protected $db_columns = ['id', 'email', 'user_group', 'hashed_password'];
 
+  public $id;
+  public $email;
+  public $password;
+
+  public function __construct() {
+
+  }
+
   public function create($email, $password) {
     $email_is_registered = self::find_by_email($email);
     if ($email_is_registered) {
@@ -24,10 +32,6 @@ class User extends DatabaseObject {
       return $result;
     }
   }
-
-  public $id;
-  public $email;
-  public $password;
 
   public function verify_login_credentials($email, $password) {
     $sql = "SELECT * FROM users ";
