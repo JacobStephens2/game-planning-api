@@ -11,11 +11,13 @@ use Firebase\JWT\JWT;
 
 // extract credentials from the request
 
-if ($hasValidCredentials) {
+// if ($hasValidCredentials) {
 
-}
+// }
 
 // Provide data
+
+echo $_ENV['TEST'];
 
 $data = get_game();
 
