@@ -21,7 +21,6 @@ if ($data->email == "") {
     $response->message = 'Log in succeeded';
     echo json_encode($response);
   } else {
-    $response = new stdClass();
     $response->message = 'Log in failed';
     echo json_encode($response);
   }
