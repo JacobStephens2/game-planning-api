@@ -1,10 +1,10 @@
 <?php
 
-require_once('../vendor/autoload.php');
+require_once('vendor/autoload.php');
 
-include_once('database/database_functions.php');
+include_once('private/database/database_functions.php');
 $database = db_connect();
-include_once('database/query_functions.php');
+include_once('private/database/query_functions.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
