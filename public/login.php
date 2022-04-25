@@ -9,15 +9,21 @@ $data = json_decode($json);
 
 require_once('../private/initialize.php');
 
+$response = new stdClass();
+
 if ($data->email == "") {
-  echo json_encode('Submit credentials to log in');
+  $response->message = 'Submit credentials to log in';
+  echo json_encode($response);
 } else {
   $user = new User();
   $login_result = $user->verify_login_credentials( $data->email, $data->password );
   if( $login_result ) {
-    echo json_encode('Log in succeeded');
+    $response->message = 'Log in succeeded';
+    echo json_encode($response);
   } else {
-    echo json_encode('Log in failed');
+    $response = new stdClass();
+    $response->message = 'Log in failed';
+    echo json_encode($response);
   }
 }
 
