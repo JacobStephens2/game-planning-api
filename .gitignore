@@ -4,3 +4,4 @@
 staff
 shared
 private/classes/admin.class.php
+private/secrets.php
