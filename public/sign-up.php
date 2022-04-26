@@ -17,7 +17,7 @@ if ($data->email == "") {
   if( $result ) {
     echo json_encode('User created');
   } else {
-    echo json_encode('The email address is registered to another account');
+    echo json_encode('User failed to create');
   }
 }
 
