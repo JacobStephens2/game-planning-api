@@ -48,16 +48,19 @@ if ($data->email == "") {
         'HS512'
     );
 
-    $cookie_name = "access_token";
-    $cookie_value = $jwt;
+    if ( $_ENV['COOKIE_SECURE'] === 'true' ) {
+      $cookie_secure = true;
+    } else {
+      $cookie_secure = false;
+    }
       
     setcookie(
-      $cookie_name, 
-      $cookie_value, 
+      "access_token", // name
+      $jwt, // value
       time() + (86400 * 7), // expire, 86400 = 1 day
       "", // path
       "", // domain
-      $_ENV['COOKIE_SECURE'], // secure
+      $cookie_secure, // secure
       true // httponly
     ); 
 
