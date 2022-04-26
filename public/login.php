@@ -32,14 +32,14 @@ if ($data->email == "") {
     $issuedAt   = new DateTimeImmutable();
     $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
     $serverName = $_SERVER['SERVER_NAME'];
-    // $username   = "username";                                           // Retrieved from filtered POST data
+    $email   = $data->email;                                           // Retrieved from filtered POST data
 
     $data = [
         'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
         'iss'  => $serverName,                       // Issuer
         'nbf'  => $issuedAt->getTimestamp(),         // Not before
         'exp'  => $expire,                           // Expire
-        // 'userName' => $username,                     // User name
+        'email' => $data->email,                     // User name
     ];
 
     $response->jwt = JWT::encode(
