@@ -59,11 +59,11 @@ if ($data->email == "") {
       $jwt, // value
       time() + (86400 * 7), // expire, 86400 = 1 day
       "", // path
-      "", // domain
+      $_ENV['COOKIE_DOMAIN'], // domain
       $cookie_secure, // secure
       true // httponly
     ); 
-
+    $response->logged_in = 'true';
     echo json_encode($response);
     
   } else {
