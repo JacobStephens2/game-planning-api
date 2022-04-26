@@ -28,7 +28,7 @@ if ($data->email == "") {
     // Validate JWT access token sent with request 
     // before responding with the game data
     // Generate token
-    $secretKey  = $_ENV['JWTSECRET'];
+    $secretKey  = $_ENV['JWT_SECRET'];
     $issuedAt   = new DateTimeImmutable();
     $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
     $serverName = $_SERVER['SERVER_NAME'];
@@ -42,11 +42,24 @@ if ($data->email == "") {
         'email' => $data->email,                     // User name
     ];
 
-    $response->jwt = JWT::encode(
+    $jwt = JWT::encode(
         $data,
-        $_ENV['JWTSECRET'],
+        $_ENV['JWT_SECRET'],
         'HS512'
     );
+
+    $cookie_name = "access_token";
+    $cookie_value = $jwt;
+      
+    setcookie(
+      $cookie_name, 
+      $cookie_value, 
+      time() + (86400 * 7), // expire, 86400 = 1 day
+      "", // path
+      "", // domain
+      $_ENV['COOKIE_SECURE'], // secure
+      true // httponly
+    ); 
 
     echo json_encode($response);
     
