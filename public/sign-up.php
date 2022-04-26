@@ -15,9 +15,9 @@ if ($data->email == "") {
   $user = new User($data);
   $result = $user->create( $data->email, $data->password );
   if( $result ) {
-    echo json_encode('User created');
+    echo json_encode('You have signed up');
   } else {
-    echo json_encode('User failed to create');
+    echo json_encode('An error occured in sign up');
   }
 }
 
