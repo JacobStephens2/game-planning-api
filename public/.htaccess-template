@@ -1,3 +1,10 @@
+# Dev and Prod
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+# Dev
 <IfModule mod_headers.c>
   Header set Access-Control-Allow-Origin "http://gameplanning.local"
   Header set Access-Control-Allow-Methods "GET, POST"
@@ -5,7 +12,10 @@
   Header set Content-Type "application/json; charset=UTF-8"
 </IfModule>
 
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
+# Prod
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "https://gameplanning.site"
+    Header set Access-Control-Allow-Methods "GET, POST"
+    Header set Access-Control-Allow-Headers: Content-Type
+    Header set Content-Type "application/json; charset=UTF-8"
+</IfModule>
