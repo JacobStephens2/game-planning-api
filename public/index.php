@@ -7,12 +7,12 @@ class testObject {}
 $myObj = new testObject;
 
 $myObj->value = "Data from the index.php endpoint of the Game Planning App API";
-$myObj->frontEnd = "https://gameplanning.site/";
+$myObj->frontEnd = $_ENV['ORIGIN'];
 $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
-$myObj->endPointBaseURL = "https://api.gameplanning.site/";
+$myObj->endPointBaseURL = $_ENV['ORIGIN'];
 $myObj->endPointsList = array(
-  "https://api.gameplanning.site/database-test.php", 
-  "https://api.gameplanning.site/game.php"
+  $_ENV['ORIGIN'] . "/database-test", 
+  $_ENV['ORIGIN'] . "/game"
 );
 
 $myJSON = json_encode($myObj);
