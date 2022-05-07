@@ -18,7 +18,7 @@ class Game {
     $sql = "INSERT INTO games_test ";
     $sql .= "( title ) ";
     $sql .= "VALUES ";
-    $sql .= "('" . $this->title . "')";
+    $sql .= "('" . self::$database->escape_string($this->title) . "')";
     $result = self::$database->query($sql);
     if($result) {
       $this->id = self::$database->insert_id;
@@ -69,6 +69,18 @@ class Game {
   static public function find_all() {
     $sql = "SELECT * FROM games_test";
     return self::find_by_sql($sql);
+  }
+
+
+  static public function find_by_id($id) {
+    $sql = "SELECT * FROM games_test ";
+    $sql .= "WHERE id = '" . self::$database->escape_string($id) . "'";
+    $obj_array = self::find_by_sql($sql);
+    if(!empty($obj_array)) {
+      return array_shift($obj_array);
+    } else {
+      return false;
+    }
   }
 
 }
