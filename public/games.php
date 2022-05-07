@@ -4,6 +4,8 @@
 
 declare(strict_types=1);
 
+error_reporting(0);
+
 require_once('../initialize.php');
 
 use Firebase\JWT\JWT;
@@ -12,6 +14,8 @@ use Firebase\JWT\Key;
 $key  = $_ENV['JWT_SECRET'];
 
 $jwt = $_COOKIE["access_token"];
+
+header('Access-Control-Allow-Credentials: true');
 
 /**
  * IMPORTANT:
