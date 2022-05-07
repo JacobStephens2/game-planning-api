@@ -7,7 +7,7 @@ class testObject {}
 $myObj = new testObject;
 
 $myObj->value = "Data from the index.php endpoint of the Game Planning App API";
-$myObj->frontEnd = $_ENV['ORIGIN'];
+$myObj->frontEnd = $_ENV['REQUEST_ORIGIN'];
 $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
 $myObj->endPointBaseURL = $_ENV['ORIGIN'];
 $myObj->endPointsList = array(
