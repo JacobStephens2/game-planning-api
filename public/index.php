@@ -12,7 +12,10 @@ $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-
 $myObj->endPointBaseURL = $_ENV['ORIGIN'];
 $myObj->endPointsList = array(
   $_ENV['ORIGIN'] . "/database-test", 
-  $_ENV['ORIGIN'] . "/game"
+  $_ENV['ORIGIN'] . "/game",
+  $_ENV['ORIGIN'] . "/games",
+  $_ENV['ORIGIN'] . "/sign-up",
+  $_ENV['ORIGIN'] . "/login"
 );
 
 $myJSON = json_encode($myObj);
