@@ -3,7 +3,7 @@
 class Game {
 
   //  Start of Active Record Code
-  static public $database;
+  static protected $database;
 
   static public function set_database($database) {
     self::$database = $database;
@@ -28,10 +28,19 @@ class Game {
 
   public $title;
 
-  static public function find_all() {
-    $sql = "SELECT * FROM games";
+  static public function find_by_sql($sql) {
     return self::$database->query($sql);
+    if(!$result) {
+      exit('Database query failed.');
+    }
+    return $result;
   }
+  
+  static public function find_all() {
+    $sql = "SELECT * FROM games_test";
+    return self::find_by_sql($sql);
+  }
+
 
 }
 
