@@ -1,6 +1,6 @@
 <?php
 
-require_once('../initialize.php');
+require_once('../../initialize.php');
 
 $site_data = array("value"=>get_site_data());
 
