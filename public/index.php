@@ -11,7 +11,7 @@ $myObj->frontEnd = $_ENV['ORIGIN'];
 $myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
 $myObj->endPointBaseURL = $_ENV['ORIGIN'];
 $myObj->endPointsList = array(
-  $_ENV['ORIGIN'] . "/database-test", 
+  $_ENV['ORIGIN'] . "/database", 
   $_ENV['ORIGIN'] . "/game",
   $_ENV['ORIGIN'] . "/games",
   $_ENV['ORIGIN'] . "/sign-up",
