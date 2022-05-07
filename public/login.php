@@ -30,7 +30,7 @@ if ($data->email == "") {
     // Generate token
     $secretKey  = $_ENV['JWT_SECRET'];
     $issuedAt   = new DateTimeImmutable();
-    $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
+    $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      // Add time
     $serverName = $_SERVER['SERVER_NAME'];
     $email   = $data->email;                                           // Retrieved from filtered POST data
 
