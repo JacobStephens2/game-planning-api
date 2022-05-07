@@ -5,15 +5,27 @@ require('../../initialize.php');
 $args = [];
 $args['title'] = $_REQUEST['title'] ?? NULL;
 
-$game = new Game($args);
-$result = $game->create();
+if ($args['title']) {
+  
+  $game = new Game($args);
+  $result = $game->create();
 
-if($result === true) {
-  $new_id = $game->id;
-  echo $game->title . ' added ';
-  echo '(id: ' . $new_id . ')';
+  if($result === true) {
+    $game->message = 'Game created';
+    echo json_encode($game);
+  } else {
+    $response = new stdClass();
+    $response->message = 'Game not created';
+    echo json_encode($response);
+  }
+
 } else {
-  echo 'Game not created';
+
+    $response = new stdClass();
+    $response->message = 'Please provide a game title';
+    echo json_encode($response);
+
 }
+
 
 ?>
