@@ -2,11 +2,6 @@
 
 require('../../initialize.php');
 
-// Get array back from Game::find_all()
-$games = Game::find_all();
-
-foreach($games as $game) {
-  echo '<li>' . $game->title . '</li>';
-}
+echo json_encode(Game::find_all());
 
 ?>
