@@ -8,7 +8,7 @@ $args['title'] = $_REQUEST['title'] ?? NULL;
 if ($args['title']) {
   
   $game = new Game($args);
-  $result = $game->create();
+  $result = $game->save();
 
   if($result === true) {
     $game->message = 'Game created';

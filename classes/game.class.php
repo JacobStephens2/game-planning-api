@@ -16,7 +16,7 @@ class Game {
     $this->title = $args['title'] ?? '';
   }
 
-  public function create() {
+  protected function create() {
     $attributes = $this->sanitized_attributes();
     $sql = "INSERT INTO games_test (";
     $sql .= join(', ', array_keys($attributes));
@@ -30,7 +30,7 @@ class Game {
     return $result;
   }
 
-  public function update() {
+  protected function update() {
     $attributes = $this->sanitized_attributes();
     $attribute_pairs = [];
     foreach($attributes as $key => $value) {
@@ -43,6 +43,15 @@ class Game {
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
+  }
+
+  public function save() {
+    // A new record will not yet have an id
+    if(isset($this->id)) {
+      return $this->update();
+    } else {
+      return $this->create();
+    }
   }
 
   public function merge_attributes($args) {

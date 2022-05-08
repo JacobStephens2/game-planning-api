@@ -6,11 +6,11 @@ $args = [];
 $args['id'] = $_REQUEST['id'] ?? NULL;
 $args['title'] = $_REQUEST['title'] ?? NULL;
 
-if ($args['id']) {
+if ($args['title']) {
   
   $game = new Game($args);
   $game->merge_attributes($args);
-  $result = $game->update();
+  $result = $game->save();
 
   if($result === true) {
     $game->message = 'Game updated';
