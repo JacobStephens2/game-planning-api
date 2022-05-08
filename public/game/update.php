@@ -2,15 +2,16 @@
 
 require('../../initialize.php');
 
-$args = [];
-$args['id'] = $_REQUEST['id'] ?? NULL;
-$args['title'] = $_REQUEST['title'] ?? NULL;
+// Receiving associative array
+$args = $_POST['game'];
 
 if ($args['title']) {
   
   $game = new Game($args);
   $game->merge_attributes($args);
   $result = $game->save();
+  
+  // echo $game->checkForID();
 
   if($result === true) {
     $game->message = 'Game updated';

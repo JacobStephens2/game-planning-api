@@ -7,13 +7,15 @@ class Game {
 
   static protected $db_columns = ['id', 'title'];
 
+  public $title;
+
   static public function set_database($database) {
     self::$database = $database;
   }
   // End of Active Record Code
  
   public function __construct($args=[]) {
-    $this->title = $args['title'] ?? '';
+    $this->title = $args['title'] ?? NULL;
   }
 
   protected function create() {
@@ -36,7 +38,6 @@ class Game {
     foreach($attributes as $key => $value) {
       $attribute_pairs[] = "{$key}='{$value}'";
     }
-
     $sql = "UPDATE games_test SET ";
     $sql .= join(', ', $attribute_pairs);
     $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
@@ -108,9 +109,6 @@ class Game {
     }
     return $object;
   }
-
-  public $id;
-  public $title;
 
   static public function find_all() {
     $sql = "SELECT * FROM games_test";
