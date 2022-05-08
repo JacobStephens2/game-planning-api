@@ -2,12 +2,12 @@
 
 require('../../initialize.php');
 
-$args = [];
-$args['title'] = $_REQUEST['title'] ?? NULL;
+$properties = [];
+$properties['title'] = $_REQUEST['title'] ?? NULL;
 
-if ($args['title']) {
+if ($properties['title']) {
   
-  $game = new Game($args);
+  $game = new Game($properties);
   $result = $game->create();
 
   if($result === true) {
