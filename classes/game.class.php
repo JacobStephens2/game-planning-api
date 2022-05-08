@@ -17,7 +17,7 @@ class Game {
   }
 
   public function create() {
-    $attributes = $this->attributes();
+    $attributes = $this->sanitized_attributes();
     $sql = "INSERT INTO games_test (";
     $sql .= join(', ', array_keys($attributes));
     $sql .= ") VALUES ('";
@@ -28,6 +28,14 @@ class Game {
       $this->id = self::$database->insert_id;
     }
     return $result;
+  }
+
+  protected function sanitized_attributes() {
+    $sanitized = [];
+    foreach($this->attributes() as $key => $value) {
+      $sanitized[$key] = self::$database->escape_string($value);
+    }
+    return $sanitized;
   }
 
   // Properties which have database columns, excluding id
