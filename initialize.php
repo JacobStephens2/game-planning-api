@@ -1,6 +1,7 @@
 <?php
 
 require_once('vendor/autoload.php');
+require_once('validation_functions.php');
 
 include_once('database/database_functions.php');
 $database = db_connect();
