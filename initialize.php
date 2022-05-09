@@ -1,14 +1,15 @@
 <?php
 
 require_once('vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 require_once('validation_functions.php');
+require_once('authenticate.php');
 
 include_once('database/database_functions.php');
 $database = db_connect();
 include_once('database/query_functions.php');
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 require_once('classes/game.class.php');
 Game::set_database($database);
