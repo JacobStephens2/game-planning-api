@@ -5,6 +5,7 @@ class Game {
   // ----- START OF ACTIVE RECORD CODE ------
   static protected $database;
   static protected $db_columns = ['id', 'title'];
+  public $errors = [];
 
   static public function set_database($database) {
     self::$database = $database;
@@ -55,7 +56,20 @@ class Game {
     return $object;
   }
 
+  protected function validate() {
+    $this->errors = [];
+
+    if(is_blank($this->title)) {
+      $this->errors['error'] = "Title cannot be blank.";
+    }
+
+    return $this->errors;
+  }
+
   protected function create() {
+    $this->validate();
+    if(!empty($this->errors)) { return false; }
+
     $attributes = $this->sanitized_attributes();
     $sql = "INSERT INTO games_test (";
     $sql .= join(', ', array_keys($attributes));
@@ -70,6 +84,9 @@ class Game {
   }
 
   protected function update() {
+    $this->validate();
+    if(!empty($this->errors)) { return false; }
+
     $attributes = $this->sanitized_attributes();
     $attribute_pairs = [];
     foreach($attributes as $key => $value) {

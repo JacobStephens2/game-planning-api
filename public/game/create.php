@@ -4,18 +4,20 @@ require('../../initialize.php');
 
 if (isset($_POST['game'])) {
   
-  $args = $_POST['game'];
+  $args = $_POST['game'] ?? NULL;
   $game = new Game($args);
-  $game->merge_attributes($args);
+  if ($args == null) {
+  } else {
+    $game->merge_attributes($args);
+  }
   $result = $game->save();
 
   if($result === true) {
     $game->message = 'Game created';
     echo json_encode($game);
   } else {
-    $response = new stdClass();
-    $response->message = 'Game not created';
-    echo json_encode($response);
+    $game->message = 'Game not created';
+    echo json_encode($game->errors);
   }
 
 } else {
