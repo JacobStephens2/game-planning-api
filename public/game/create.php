@@ -6,10 +6,7 @@ if (isset($_POST['game'])) {
   
   $args = $_POST['game'] ?? NULL;
   $game = new Game($args);
-  if ($args == null) {
-  } else {
-    $game->merge_attributes($args);
-  }
+  $game->merge_attributes($args);
   $result = $game->save();
 
   if($result === true) {
@@ -23,7 +20,7 @@ if (isset($_POST['game'])) {
 } else {
 
     $response = new stdClass();
-    $response->message = 'Please provide a game title';
+    $response->message = 'Please provide an array of game form data';
     echo json_encode($response);
 
 }
