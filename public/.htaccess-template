@@ -1,3 +1,7 @@
+# Faster performance and elimination of need to
+# Place this in many directories would come from putting these
+# rules into the Apache configuration file for the virtual host
+
 # Dev and Prod
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
