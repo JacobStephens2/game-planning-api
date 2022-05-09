@@ -2,31 +2,40 @@
 
 require('../../initialize.php');
 
-// Receiving associative array
-$args = $_POST['game'];
-
-if ($args['title']) {
+if (isset($_GET['id'])) {
   
-  $game = new Game($args);
-  $game->merge_attributes($args);
-  $result = $game->save();
-  
-  // echo $game->checkForID();
+  $id = $_GET['id'];
+  $game = Game::find_by_id($id);
 
-  if($result === true) {
-    $game->message = 'Game updated';
-    echo json_encode($game);
-  } else {
+  if ($game == false) {
+    
     $response = new stdClass();
-    $response->message = 'Game not updated';
+    $response->message = 'id ' . $_GET['id'] . ' does not match a game in the database';
     echo json_encode($response);
-  }
+    
+  } else {
+    
+    // Receiving associative array
+    $args = $_POST['game'];
+    $game->merge_attributes($args);
+    $result = $game->save();
 
+    if($result === true) {
+      $game->message = $game->title . ' updated';
+      echo json_encode($game);
+    } else {
+      $response = new stdClass();
+      $response->message = 'Game not updated';
+      echo json_encode($response);
+    }
+
+  }
+  
 } else {
 
-    $response = new stdClass();
-    $response->message = 'Please provide a game id';
-    echo json_encode($response);
+  $response = new stdClass();
+  $response->message = 'Please provide a game id';
+  echo json_encode($response);
 
 }
 
