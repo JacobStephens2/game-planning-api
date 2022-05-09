@@ -8,6 +8,8 @@ error_reporting(0);
 
 require_once('../../initialize.php');
 
+authenticate();
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 

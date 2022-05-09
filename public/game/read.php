@@ -2,6 +2,8 @@
 
 require('../../initialize.php');
 
+authenticate();
+
 $response = new stdClass();
 
 if (!empty($_REQUEST['id'])) {

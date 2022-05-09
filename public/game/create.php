@@ -2,6 +2,8 @@
 
 require('../../initialize.php');
 
+authenticate();
+
 if (isset($_POST['game'])) {
   
   $args = $_POST['game'] ?? NULL;

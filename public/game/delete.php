@@ -2,6 +2,8 @@
 
 require('../../initialize.php');
 
+authenticate();
+
 $response = new stdClass();
 
 // Check if an id was provided
