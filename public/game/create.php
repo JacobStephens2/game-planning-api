@@ -2,12 +2,11 @@
 
 require('../../initialize.php');
 
-$args = [];
-$args['title'] = $_REQUEST['title'] ?? NULL;
-
-if ($args['title']) {
+if (isset($_POST['game'])) {
   
+  $args = $_POST['game'];
   $game = new Game($args);
+  $game->merge_attributes($args);
   $result = $game->save();
 
   if($result === true) {
