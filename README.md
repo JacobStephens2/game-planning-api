@@ -1,6 +1,6 @@
 # Game Planning API
 
-This is the back end of the Game Planning App, providing data management which can be used for planning game events. Game records can be created, read, updated, and deleted.
+This is the back end of the Game Planning App, providing data management which can be used for planning game events. Game records can be created, read, updated, and deleted with user authentication.
 
 A front end for this API is at https://gameplanning.site. Here is this front end's repository: https://github.com/JacobStephens2/game-planning-front-end
 
