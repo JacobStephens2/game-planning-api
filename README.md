@@ -1,4 +1,4 @@
-# Game Planning App Back End
+# Game Planning API
 
 This is the back end of the Game Planning App, providing data which can be used for planning game events.
 
