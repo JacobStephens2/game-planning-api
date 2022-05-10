@@ -4,13 +4,13 @@ require_once('../initialize.php');
 
 class testObject {}
 
-$myObj = new testObject;
+$overview = new testObject;
 
-$myObj->value = "Data from the index.php endpoint of the Game Planning App API";
-$myObj->frontEnd = $_ENV['REQUEST_ORIGIN'];
-$myObj->endPointsDescription = "https://github.com/JacobStephens2/game-planning-back-end";
-$myObj->endPointBaseURL = $_ENV['ORIGIN'];
-$myObj->endPointsList = array(
+$overview->value = "Data from the index.php endpoint of the Game Planning App API";
+$overview->frontEnd = $_ENV['REQUEST_ORIGIN'];
+$overview->repository = "https://github.com/JacobStephens2/game-planning-back-end";
+$overview->endPointBaseURL = $_ENV['ORIGIN'];
+$overview->endPointsList = array(
   $_ENV['ORIGIN'] . "/test/database", 
   $_ENV['ORIGIN'] . "/sign-up",
   $_ENV['ORIGIN'] . "/login",
@@ -22,8 +22,6 @@ $myObj->endPointsList = array(
   $_ENV['ORIGIN'] . "/game/delete"
 );
 
-$myJSON = json_encode($myObj);
-
-echo $myJSON;
+echo json_encode($overview);
 
 ?>
