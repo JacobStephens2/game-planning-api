@@ -1,6 +1,5 @@
 .vscode/sftp.json
 *db_credentials.php
-.htaccess
 staff
 shared
 private/classes/admin.class.php
