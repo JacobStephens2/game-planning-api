@@ -14,6 +14,7 @@ $myObj->endPointsList = array(
   $_ENV['ORIGIN'] . "/test/database", 
   $_ENV['ORIGIN'] . "/sign-up",
   $_ENV['ORIGIN'] . "/login",
+  $_ENV['ORIGIN'] . "/logout",
   $_ENV['ORIGIN'] . "/game/create",
   $_ENV['ORIGIN'] . "/games/read",
   $_ENV['ORIGIN'] . "/game/read",
