@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(0);
-
 header('Access-Control-Allow-Credentials: true');
 
 // Takes raw data from the request

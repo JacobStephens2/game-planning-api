@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-error_reporting(0);
-
 require_once('../initialize.php');
 
 use Firebase\JWT\JWT;
