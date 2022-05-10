@@ -2,7 +2,7 @@
 
 This is the back end of the Game Planning App, providing data which can be used for planning game events.
 
-A front end for this API is at https://gameplanning.site
+A front end for this API is at https://gameplanning.site. Here is this front end's repository: https://github.com/JacobStephens2/game-planning-front-end
 
 ## Endpoints
 
