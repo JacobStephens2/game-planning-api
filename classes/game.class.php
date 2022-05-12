@@ -10,6 +10,7 @@ class Game extends DatabaseObject {
  
   public function __construct($args=[]) {
     $this->title = $args['title'] ?? NULL;
+    $this->user_id = $args['user_id'] ?? NULL;
   }
 
   protected function validate() {

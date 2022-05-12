@@ -1,6 +1,6 @@
 <?php
 
-require('../../initialize.php');
+require_once('../../initialize.php');
 
 $access_token = authenticate();
 
