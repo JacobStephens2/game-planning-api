@@ -25,7 +25,7 @@ class Game extends DatabaseObject {
   static public function find_all_by_user_id($user_id) {
     $sql = "SELECT * FROM " . static::$table_name . " ";
     // escape $user_id after testing without escape
-    $sql .= "WHERE user_id = '" . $user_id . "'";
+    $sql .= "WHERE user_id = '" . self::$database->escape_string($user_id) . "'";
     return static::find_by_sql($sql);
   }
 
