@@ -3,7 +3,7 @@
 class Game extends DatabaseObject {
 
   static protected $table_name = 'games_test';
-  static protected $db_columns = ['id', 'title'];
+  static protected $db_columns = ['id', 'title', 'user_id'];
 
   public $id;
   public $title;
@@ -20,6 +20,13 @@ class Game extends DatabaseObject {
     }
 
     return $this->errors;
+  }
+
+  static public function find_all_by_user_id($user_id) {
+    $sql = "SELECT * FROM " . static::$table_name . " ";
+    // escape $user_id after testing without escape
+    $sql .= "WHERE user_id = '" . $user_id . "'";
+    return static::find_by_sql($sql);
   }
 
 }

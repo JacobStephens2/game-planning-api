@@ -9,6 +9,10 @@ class User extends DatabaseObject {
   public $email;
   public $password;
 
+  public function __construct() {
+
+  }
+
   public function createUser($email, $password) {
     $email_is_registered = self::find_by_email($email);
     if ($email_is_registered) {

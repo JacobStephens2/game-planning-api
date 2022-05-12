@@ -18,10 +18,10 @@ if ($data->email == "") {
   $user = new User($data);
   $result = $user->createUser( $data->email, $data->password );
   if( $result ) {
-    $response->message = 'Log in succeeded';
+    $response->message = 'Account creation succeeded';
     echo json_encode($response);
   } else {
-    $response->message = 'An error occured in sign up';
+    $response->message = 'This email address is already associated with an account';
     echo json_encode($response);
   }
 }

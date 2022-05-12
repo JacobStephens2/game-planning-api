@@ -20,8 +20,8 @@ if ($data->email == "") {
   echo json_encode($response);
 } else {
   $user = new User();
-  $login_result = $user->verify_login_credentials( $data->email, $data->password );
-  if( $login_result ) {
+  $verified_user = $user->verify_login_credentials( $data->email, $data->password );
+  if( $verified_user ) {
 
     $response->message = 'Log in succeeded';
 
@@ -32,14 +32,15 @@ if ($data->email == "") {
     $issuedAt   = new DateTimeImmutable();
     $expire     = $issuedAt->modify('+60 minutes')->getTimestamp(); // Add time
     $serverName = $_SERVER['SERVER_NAME'];
-    $email   = $data->email; // Retrieved from filtered POST data
+    $user_id    = $verified_user->id;
+    $email      = $data->email; // Retrieved from filtered POST data
 
     $data = [
         'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
         'iss'  => $serverName,                       // Issuer
         'nbf'  => $issuedAt->getTimestamp(),         // Not before
         'exp'  => $expire,                           // Expire
-        'email' => $data->email,                     // User name
+        'user_id' => $user_id,
     ];
 
     $jwt = JWT::encode(

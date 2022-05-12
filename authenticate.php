@@ -11,6 +11,7 @@ function authenticate() {
     $jwt = $_COOKIE["access_token"];
     $key  = $_ENV['JWT_SECRET'];
     $decodedJWT = JWT::decode($jwt, new Key($key, 'HS512'));
+    return $decodedJWT;
   } catch (Exception $e) {
     $response = new stdClass();
     $response->message = 'You have not been authenticated';
