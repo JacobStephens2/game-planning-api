@@ -12,7 +12,7 @@ The base URL returns JSON data and can be used as a test endpoint for connection
 
 ## Apache Directives
 
-Faster performance and elimination of need to place this in many directories would come from putting these rules into the Apache configuration file for the virtual host
+Faster performance and elimination of need to place this in many directories would come from putting these rules into the Apache configuration file for the virtual host as opposed to in a .htaccess file.
 
 ```
 # Dev
