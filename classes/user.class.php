@@ -1,6 +1,6 @@
 <?php
 
-class User extends DatabaseObject {
+class User extends DBObject {
   
   static protected $table_name = 'users';
   static protected $db_columns = ['id', 'email', 'user_group', 'hashed_password'];
@@ -13,7 +13,7 @@ class User extends DatabaseObject {
 
   }
 
-  public function create($email, $password) {
+  public function createUser($email, $password) {
     $email_is_registered = self::find_by_email($email);
     if ($email_is_registered) {
       return false;

@@ -16,7 +16,7 @@ if ($data->email == "") {
   echo json_encode($response);
 } else {
   $user = new User($data);
-  $result = $user->create( $data->email, $data->password );
+  $result = $user->createUser( $data->email, $data->password );
   if( $result ) {
     $response->message = 'Log in succeeded';
     echo json_encode($response);
