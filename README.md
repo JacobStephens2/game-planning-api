@@ -1,6 +1,8 @@
-# Game Planning App Back End
+# Game Planning API
 
-This is the back end of the Game Planning App, providing data which can be used for planning game events.
+This is the back end of the Game Planning App, providing data management which can be used for planning game events. Game records can be created, read, updated, and deleted with user authentication.
+
+A front end for this API is at https://gameplanning.site. Here is this front end's repository: https://github.com/JacobStephens2/game-planning-app
 
 ## Endpoints
 
@@ -10,7 +12,7 @@ The base URL returns JSON data and can be used as a test endpoint for connection
 
 ## Apache Directives
 
-Faster performance and elimination of need to Place this in many directories would come from putting these rules into the Apache configuration file for the virtual host
+Faster performance and elimination of need to place this in many directories would come from putting these rules into the Apache configuration file for the virtual host
 
 ```
 # Dev
