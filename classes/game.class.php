@@ -1,6 +1,6 @@
 <?php
 
-class Game extends DBObject {
+class Game extends DatabaseObject {
 
   static protected $table_name = 'games_test';
   static protected $db_columns = ['id', 'title'];

@@ -1,6 +1,6 @@
 <?php
 
-class User extends DBObject {
+class User extends DatabaseObject {
   
   static protected $table_name = 'users';
   static protected $db_columns = ['id', 'email', 'user_group', 'hashed_password'];
@@ -8,10 +8,6 @@ class User extends DBObject {
   public $id;
   public $email;
   public $password;
-
-  public function __construct() {
-
-  }
 
   public function createUser($email, $password) {
     $email_is_registered = self::find_by_email($email);
@@ -45,18 +41,7 @@ class User extends DBObject {
     }
   }
 
-  static public function find_by_id($id) {
-    $sql = "SELECT * FROM users ";
-    $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
-    $obj_array = self::find_by_sql($sql);
-    if(!empty($obj_array)) {
-      return array_shift($obj_array);
-    } else {
-      return false;
-    }
-  }
-
-    static public function find_by_email($email) {
+  static public function find_by_email($email) {
     $sql = "SELECT * FROM users ";
     $sql .= "WHERE email='" . self::$database->escape_string($email) . "'";
     $obj_array = self::find_by_sql($sql);
