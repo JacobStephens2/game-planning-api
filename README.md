@@ -17,13 +17,11 @@ Faster performance and elimination of need to place this in many directories wou
 ```
 # Dev
 Header set Access-Control-Allow-Origin "http://gameplanning.local"
-Header set Access-Control-Allow-Methods "GET, POST"
-Header set Access-Control-Allow-Headers: Content-Type
-Header set Access-Control-Allow-Credentials: true
-Header set Content-Type "application/json; charset=UTF-8"
 
 # Prod
 Header set Access-Control-Allow-Origin "https://gameplanning.site"
+
+# All Environments
 Header set Access-Control-Allow-Methods "GET, POST"
 Header set Access-Control-Allow-Headers: Content-Type
 Header set Access-Control-Allow-Credentials: true
