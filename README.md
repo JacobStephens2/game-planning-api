@@ -2,11 +2,11 @@
 
 This is the back end of the Game Planning App, providing data management which can be used for planning game events. Game records can be created, read, updated, and deleted with user authentication.
 
-A front end for this API is at https://gameplanning.site. Here is this front end's repository: https://github.com/JacobStephens2/game-planning-app.
+Here is this front end's repository: https://github.com/JacobStephens2/game-planning-app.
 
 ## Endpoints
 
-base URL: https://api.gameplanning.site
+base URL: https://api.gameplanning.site (Not currently live)
 
 The base URL returns JSON data and can be used as a test endpoint for connection to the API. Endpoints can be found at the base URL.
 
