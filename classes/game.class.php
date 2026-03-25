@@ -7,6 +7,7 @@ class Game extends DatabaseObject {
 
   public $id;
   public $title;
+  public $user_id;
  
   public function __construct($args=[]) {
     $this->title = $args['title'] ?? NULL;
