@@ -3,14 +3,16 @@
 class Game extends DatabaseObject {
 
   static protected $table_name = 'games_test';
-  static protected $db_columns = ['id', 'title', 'user_id'];
+  static protected $db_columns = ['id', 'title', 'description', 'user_id'];
 
   public $id;
   public $title;
+  public $description;
   public $user_id;
- 
+
   public function __construct($args=[]) {
     $this->title = $args['title'] ?? NULL;
+    $this->description = $args['description'] ?? NULL;
     $this->user_id = $args['user_id'] ?? NULL;
   }
 
