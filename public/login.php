@@ -6,70 +6,62 @@ require_once('../initialize.php');
 
 use Firebase\JWT\JWT;
 
-// Takes raw data from the request
 $json = file_get_contents('php://input');
-
 $data = json_decode($json);
 
 $response = new stdClass();
 
-if ($data->email == "") {
+if (!$data || empty($data->email) || empty($data->password)) {
+  http_response_code(400);
   $response->message = 'Submit credentials to log in';
   echo json_encode($response);
-} else {
-  $user = new User();
-  $verified_user = $user->verify_login_credentials( $data->email, $data->password );
-  if( $verified_user ) {
-
-    $response->message = 'Log in succeeded';
-
-    // Validate JWT access token sent with request 
-    // before responding with the game data
-    // Generate token
-    $secretKey  = $_ENV['JWT_SECRET'];
-    $issuedAt   = new DateTimeImmutable();
-    $expire     = $issuedAt->modify('+60 minutes')->getTimestamp(); // Add time
-    $serverName = $_SERVER['SERVER_NAME'];
-    $user_id    = $verified_user->id;
-    $email      = $data->email; // Retrieved from filtered POST data
-
-    $data = [
-        'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
-        'iss'  => $serverName,                       // Issuer
-        'nbf'  => $issuedAt->getTimestamp(),         // Not before
-        'exp'  => $expire,                           // Expire
-        'user_id' => $user_id,
-    ];
-
-    $jwt = JWT::encode(
-        $data,
-        $_ENV['JWT_SECRET'],
-        'HS512'
-    );
-
-    if ( $_ENV['COOKIE_SECURE'] === 'true' ) {
-      $cookie_secure = true;
-    } else {
-      $cookie_secure = false;
-    }
-      
-    setcookie(
-      "access_token", // name
-      $jwt, // value
-      time() + (86400 * 7), // expire, 86400 = 1 day
-      "", // path
-      $_ENV['COOKIE_DOMAIN'], // domain
-      $cookie_secure, // secure
-      true // httponly
-    ); 
-    $response->logged_in = 'true';
-    echo json_encode($response);
-    
-  } else {
-    $response->message = 'Log in failed';
-    echo json_encode($response);
-  }
+  exit;
 }
 
+$user = new User();
+$verified_user = $user->verify_login_credentials($data->email, $data->password);
+
+if (!$verified_user) {
+  http_response_code(401);
+  $response->message = 'Log in failed';
+  echo json_encode($response);
+  exit;
+}
+
+$response->message = 'Log in succeeded';
+
+$secretKey  = $_ENV['JWT_SECRET'];
+$issuedAt   = new DateTimeImmutable();
+$expire     = $issuedAt->modify('+60 minutes')->getTimestamp();
+$serverName = $_SERVER['SERVER_NAME'];
+
+$payload = [
+    'iat'  => $issuedAt->getTimestamp(),
+    'iss'  => $serverName,
+    'nbf'  => $issuedAt->getTimestamp(),
+    'exp'  => $expire,
+    'user_id' => $verified_user->id,
+];
+
+$jwt = JWT::encode(
+    $payload,
+    $_ENV['JWT_SECRET'],
+    'HS512'
+);
+
+$cookie_secure = $_ENV['COOKIE_SECURE'] === 'true';
+
+setcookie(
+  "access_token",
+  $jwt,
+  time() + (86400 * 7),
+  "/",
+  $_ENV['COOKIE_DOMAIN'],
+  $cookie_secure,
+  true
+);
+
+$response->logged_in = 'true';
+echo json_encode($response);
 
 ?>
