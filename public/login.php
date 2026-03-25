@@ -6,8 +6,6 @@ require_once('../initialize.php');
 
 use Firebase\JWT\JWT;
 
-header('Access-Control-Allow-Credentials: true');
-
 // Takes raw data from the request
 $json = file_get_contents('php://input');
 

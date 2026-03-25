@@ -1,7 +1,5 @@
 <?php
 
-header('Access-Control-Allow-Credentials: true');
-
 // Takes raw data from the request
 $json = file_get_contents('php://input');
 
