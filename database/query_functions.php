@@ -3,24 +3,14 @@
 function get_site_data($purpose = 'app_name') {
   global $database;
 
-  $sql = "SELECT * FROM `app` ";
-  $sql .= "WHERE purpose = '" . $purpose . "'";
-
-  $result = $database->query($sql);
+  $stmt = $database->prepare("SELECT * FROM `app` WHERE purpose = ?");
+  $stmt->bind_param("s", $purpose);
+  $stmt->execute();
+  $result = $stmt->get_result();
   $row = $result->fetch_assoc();
-  $result->free();
+  $stmt->close();
 
   return $row['value'];
-}
-
-function get_game() {
-  global $database;
-
-  $result = Game::find_all();
-  $row = $result->fetch_assoc();
-  $result->free();
-
-  return $row['Title'];
 }
 
 ?>
