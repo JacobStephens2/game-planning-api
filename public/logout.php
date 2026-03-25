@@ -8,11 +8,13 @@ require_once('../initialize.php');
 $json = file_get_contents('php://input');
 
 $response = new stdClass();
-      
+
+$cookie_secure = $_ENV['COOKIE_SECURE'] === 'true';
+
 setcookie(
   "access_token", // name
   "", // value
-  time() + (86400 * 7), // expire, 86400 = 1 day
+  time() - 3600, // expire in the past to clear
   "", // path
   $_ENV['COOKIE_DOMAIN'], // domain
   $cookie_secure, // secure
