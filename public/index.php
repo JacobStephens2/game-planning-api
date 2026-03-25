@@ -8,7 +8,7 @@ $overview = new testObject;
 
 $overview->value = "Data from the index.php endpoint of the Game Planning App API";
 $overview->frontEnd = $_ENV['REQUEST_ORIGIN'];
-$overview->repository = "https://github.com/JacobStephens2/game-planning-back-end";
+$overview->repository = "https://github.com/JacobStephens2/game-planning-api";
 $overview->endPointBaseURL = $_ENV['ORIGIN'];
 $overview->endPointsList = array(
   $_ENV['ORIGIN'] . "/test/database", 
